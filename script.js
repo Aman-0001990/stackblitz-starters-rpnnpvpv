@@ -1,5 +1,10 @@
+// script.js
+const jwt = require('jsonwebtoken');
+
 const encrypt = (payload, secret) => {
-  // your code here and return token
+  const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+  return token;
 };
 
-module.exports = encrypt;
+const token = encrypt({ userId: '12345', name: 'Alice' }, 'mySecretKey');
+console.log('Generated Token:', token);
